@@ -1,0 +1,58 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "repeat": {
+    "row": [
+      "GDP_per_capita",
+      "Perceptions_of_corruption",
+      "Freedom_to_make_life_choices"
+    ],
+    "column": [
+      "Freedom_to_make_life_choices",
+      "Perceptions_of_corruption",
+      "GDP_per_capita"
+    ]
+  },
+  "spec": {
+    "data": {
+      "url": "https://raw.githubusercontent.com/mguo35/FIT3179/main/2019.csv"
+    },
+    "mark": "point",
+    "selection": {
+      "brush": {
+        "type": "interval",
+        "resolve": "union",
+        "on": "[mousedown[event.shiftKey], window:mouseup] > window:mousemove!",
+        "translate": "[mousedown[event.shiftKey], window:mouseup] > window:mousemove!",
+        "zoom": "wheel![event.shiftKey]"
+      },
+      "grid": {
+        "type": "interval",
+        "resolve": "global",
+        "bind": "scales",
+        "translate": "[mousedown[!event.shiftKey], window:mouseup] > window:mousemove!",
+        "zoom": "wheel![!event.shiftKey]"
+      }
+    },
+    "encoding": {
+      "x": {"field": {"repeat": "column"}, "type": "quantitative"},
+      "y": {
+        "field": {"repeat": "row"},
+        "type": "quantitative",
+        "axis": {"minExtent": 30}
+      },
+      "color": {
+        "condition": {
+          "selection": "brush",
+          "field": "Score",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [2, 4, 6, 8],
+            "range": ["#ffffb2", "#fecc5c", "#fd8d3c", "#f03b20", "#bd0026"]
+          }
+        },
+        "value": "grey"
+      }
+    }
+  }
+}
