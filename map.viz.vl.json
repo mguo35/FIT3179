@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "title": "Percent of Year 7-9 students who reported being bullied recently (2016)",
+  "title": "World Happiness Levels 2019",
   "width": "container",
   "height": 450,
   "projection": {
