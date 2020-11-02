@@ -1,0 +1,59 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "description": "A bar chart with highlighting on hover and selecting on click. (Inspired by Tableau's interaction style.)",
+  "title": "Relationship between social support and GDP",
+  "data": {
+    "url": "https://raw.githubusercontent.com/mguo35/FIT3179/main/2019.csv"
+  },
+  "selection": {
+    "highlight": {"type": "single", "empty": "none", "on": "mouseover"},
+    "select": {"type": "multi"}
+  },
+  "mark": {
+    "type": "bar",
+    "fill": "#fd8d3c",
+    "stroke": "black",
+    "cursor": "pointer"
+  },
+  "encoding": {
+    "x": {
+      "field": "Social_support",
+      "title": "Level of Social Support",
+      "type": "quantitative"
+    },
+    "y": {
+      "field": "GDP_per_capita",
+      "title": "GDP per capita",
+      "type": "quantitative"
+    },
+    "tooltip": [
+      {
+        "field": "GDP_per_capita",
+        "title": "GDP per capita",
+        "type": "quantitative"
+      },
+      {
+        "field": "Social_support",
+        "title": "Level of Social Support",
+        "type": "quantitative"
+      }
+    ],
+    "fillOpacity": {
+      "condition": {"selection": "select", "value": 1},
+      "value": 0.3
+    },
+    "strokeWidth": {
+      "condition": [
+        {
+          "test": {
+            "and": [{"selection": "select"}, "length(data(\"select_store\"))"]
+          },
+          "value": 2
+        },
+        {"selection": "highlight", "value": 1}
+      ],
+      "value": 0
+    }
+  },
+  "config": {"scale": {"bandPaddingInner": 0.2}}
+}
