@@ -38,8 +38,12 @@
       "y": {
         "field": {"repeat": "row"},
         "type": "quantitative",
-        "axis": {"minExtent": 30}
-      },
+        "axis": {"minExtent": 30}},
+        "tooltip": [
+      {"field": "Freedom_to_make_life_choices", "title": "Freedom", "type": "quantitative"},
+      {"field": "GDP_per_capita", "title": "GDP", "type": "quantitative"},
+      {"field": "Perceptions_of_corruption", "title": "Level of Perceived Corruption","type": "quantitative"}
+    ],
       "color": {
         "condition": {
           "selection": "brush",
