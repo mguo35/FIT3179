@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "width": 800,
+  "width": "container",
   "height": 600,
   "title": "Happiness based off GDP and life expectancy",
   "data": {
