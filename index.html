@@ -1,27 +1,223 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+  <title>World Happiness Ranking in 2019</title>
   <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
   <!-- Import vega-embed -->
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+
+  <!-- custom style -->
+  <style>
+    * {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-family: 'Oxygen', sans-serif;
+    }
+
+    h1 {
+      font-weight: 900;
+      background: #ff8000;
+      text-align: centre;
+      padding-top:40px;
+      padding-bottom:40px;
+      font-size:55px
+    }
+
+    body {
+      background-color: orangered;
+    }
+
+    .page {
+      width: 800px;
+      margin: auto;
+      padding: 70px;
+      padding-top: 35px;
+    }
+
+    .vis-container {
+      width: 100%;
+    }
+
+    .description h2,
+    h1 {
+      margin-top: 10px;
+    }
+
+    .description-right {
+      padding-left: 10px;
+    }
+
+    .description-left {
+      padding-right: 10px;
+    }
+
+    .pure-g {
+      margin-bottom: 15px;
+    }
+  
+    .pure-g1{
+      margin-bottom: 0px;
+      padding-left: 20px;
+    }
+    
+    .small-font {
+      font-size: 14px;
+    }
+  </style>
 </head>
+
 <body>
-<h1>Multiple Visualisations Update</h1>
-<h2>This is the first visualisation</h2>
-<div id="vis1"></div>
-<h2>This is the second visualisation</h2>
-<div id="vis2"></div>
-<script type="text/javascript">
-  var specVis1 = "https://mguo35.github.io/FIT3179/map.viz.vl.json";
-  var specVis2= "https://mguo35.github.io/FIT3179/bubblevisualization.vl.json";
-  vegaEmbed('#vis1', specVis1).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
-   vegaEmbed('#vis2', specVis2).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
-</script>
+
+  <div class="page">
+
+    <!-- Title and subtitle -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1 style = "text-align:center"> World Happiness Ranking 2019</h1>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- Caption/small text -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h2 style = "text-align:center"> Which country is the closest to Utopia? </h2>
+        <p style = "text-align:center"> This map of the world reveals each country's happiness score. Developed countries like <b>Australia, Canada, Norway etc.</b> possess extremely high happiness scores. Countries either within the same region or close to high scoring countries tend to be happier as well. However there are some exceptions where neighbouring countries have much lower happiness scores. The countries with lower scores like those in <b>African/Asian region</b> can be accounted for as those are mostly emerging countries with various factors potentially affecting their happines levels. </p>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+    
+    <!-- Choropleth map -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="vis1" class="vis-container"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+ <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1 style = "text-align:center"></h1>
+      </div>
+    </div>
+ <!-- end pure grid group -->
+    
+    
+    <!-- More text -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h2 style = "text-align:center"> Is there a relationship between healthy life expectancy and GDP with happiness?  </h2>
+        <p style = "text-align:center"> From the resulting bubble plot, one can see GDP and life expectancy play an important role in determing the happiness of a country. There seems to be a <b>strong positive correlation</b> between happiness and the GDP and life expectancy factors as evidenced in the bubble plot where the top scoring countries all possess both high gdp and life expectancy. Constrastingly, the countries with low GDP and low life expectancy rank very poorly like <b> Central African Republic</b>. This data is expected as countries with more GDP probably live richer lives filled with materialistic enjoyment, whilst countries with higher healthy life expectancy probably mean the people have more time to reach spiritual fulfillment.</p>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+    
+    <!-- Bubble Plot -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="vis3" class="vis-container"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1 style = "text-align:center"></h1>
+      </div>
+    </div>
+    
+    <!-- More text -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h2 style = "text-align:center"> How is GDP affected by the corruption of the government and freedom of the people?  </h2>
+        <p style = "text-align:center"> From the scatterplot matrix, one can see that if people are free to make their own choices it usually results in higher GDP and hence higher happiness scores. This is expected since if people are being controlled, they would feel resentment and be unable to work/generate income to their full potential. It goes without saying if the people of a country dont perceive any corruption there is generally a higher GDP. This is accountable as countries where the people can trust the government will generally have less dissidents and more productivity.</p>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+    
+    <!-- pure grid group -->
+   <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div id="vis2" class="vis-container"></div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+    
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1 style = "text-align:center"></h1>
+      </div>
+    </div>
+ <!-- end pure grid group -->
+    
+    <!-- More text -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h2 style = "text-align:center"> What about the level of social support and generosity of a country? </h2>
+        <p style = "text-align:center"> From the bar charts relating GDP and social support, it can be seen that the higher level of social support a government offers relates to a higher GDP in general. This is understandable as countries with higher levels of social support usually have the disposable wealth to support their people. From the generosity bar chart there doesnt seem to be a significant relationship between GDP and the generosity level of a country. However it can be seen that the high GDP countries possess medium generosity levels.  </p>
+      </div>
+   </div>
+    <!-- end pure grid group -->
+    
+<!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-2">
+          <div id="vis4"  class="vis-container"></div>
+        </div>
+        <div class="pure-u-1-2">
+          <div id="vis5" class="vis-container"></div>
+        </div>
+    </div>
+    
+    <!-- end pure grid group -->
+
+    <div class="pure-g">
+      <div class="pure-u-1-1 small-font">
+        <p>This visualisation is created by <a href="https://github.com/mguo35">Murphy Guo</a>, adapted from an
+          example made by <a href="https://github.com/KadekSatriadi" target="_blank">Kadek Satriadi</a>. The dataset can be found from <a
+            href="https://www.kaggle.com/unsdsn/world-happiness">here</href>.</p>
+      </div>
+    </div>
+  </div> <!-- end page -->
+
+  <script type="text/javascript">
+    var specVis1 = "./map.viz.vl.json";
+    var specVis2 = "./bubblevisualization.vl.json";
+    var specVis3 = "./splom.vl.json";
+    var specVis4 = "./barchart1.vl.json";
+    var specVis5 = "./barchart2Gen.vl.json";
+
+    vegaEmbed('#vis1', specVis1, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis2', specVis2, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis3', specVis3, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis4', specVis4, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis5', specVis5, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+  </script>
 </body>
+
 </html>
